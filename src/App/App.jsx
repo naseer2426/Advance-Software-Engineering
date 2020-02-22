@@ -7,7 +7,7 @@ import { authenticationService } from "../services/authenticationService";
 import PrivateRoute from "../components/privateRoute";
 import { Navbar, Nav } from "react-bootstrap";
 
-import Dashboard from "../components/dashboard";
+import Dashboard from "../pages/dashboard";
 import HomePage from "../pages/homePage";
 import AdminPage from "../pages/adminPage";
 import LoginPage from "../pages/loginPage";
@@ -26,7 +26,7 @@ class App extends React.Component {
     authenticationService.currentUser.subscribe(x =>
       this.setState({
         currentUser: x,
-        isAdmin: x && x.role === Role.Admin
+        isAdmin: x && x.role === Role.Administrator
       })
     );
   }
@@ -46,17 +46,17 @@ class App extends React.Component {
             <Nav className="ml-auto">
               {currentUser && (
                 <>
-                  <Nav.Link href="/" className="nav-item nav-link mr-4">
+                  <Nav.Link href="/" className="nav-item nav-link mr-3">
                     Home
                   </Nav.Link>
                   <Nav.Link
                     href="/dashboard"
-                    className="nav-item nav-link mr-4"
+                    className="nav-item nav-link mr-3"
                   >
                     Dashboard
                   </Nav.Link>
                   {isAdmin && (
-                    <Nav.Link href="/manage" className="nav-item nav-link mr-4">
+                    <Nav.Link href="/manage" className="nav-item nav-link mr-3">
                       Manage
                     </Nav.Link>
                   )}
@@ -77,8 +77,9 @@ class App extends React.Component {
                 <PrivateRoute exact path="/" component={HomePage} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute
+                  exact
                   path="/manage"
-                  roles={[Role.Admin]}
+                  roles={[Role.Administrator]}
                   component={AdminPage}
                 />
                 <Route path="/signin" component={LoginPage} />

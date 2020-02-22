@@ -1,7 +1,9 @@
 import React from "react";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import { Container, Col, Image } from "react-bootstrap";
 
-import { userService } from "../services/userService";
 import { authenticationService } from "../services/authenticationService";
+// import { userService } from "../services/userService";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -13,34 +15,31 @@ class HomePage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const { currentUser } = this.state;
-    userService
-      .getById(currentUser.id)
-      .then(userFromApi => this.setState({ userFromApi }));
-  }
-
   render() {
-    const { currentUser, userFromApi } = this.state;
+    const { currentUser } = this.state;
     return (
-      <div>
-        <h1>Home</h1>
-        <p>You're logged in with React & JWT!!</p>
-        <p>
-          Your role is: <strong>{currentUser.role}</strong>.
-        </p>
-        <p>This page can be accessed by all authenticated users.</p>
-        <div>
-          Current user from secure api end point:
-          {userFromApi && (
-            <ul>
-              <li>
-                {userFromApi.firstName} {userFromApi.lastName}
-              </li>
-            </ul>
-          )}
-        </div>
-      </div>
+      <React.Fragment>
+        <Container fluid md={12}>
+          <Col md={{ span: 6, offset: 3 }}>
+            <Image src={currentUser.profileUrl} roundedCircle alt="profile" />
+          </Col>
+        </Container>
+        <Jumbotron>
+          <Container>
+            <h1 className="text-center">
+              Welcome{" "}
+              <strong>
+                <i>{currentUser.firstName}</i>
+              </strong>
+            </h1>
+          </Container>
+        </Jumbotron>
+        <Col>
+          <p>
+            Your role is: <strong>{currentUser.role}</strong>
+          </p>
+        </Col>
+      </React.Fragment>
     );
   }
 }

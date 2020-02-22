@@ -84,7 +84,7 @@ class LoginPage extends React.Component {
               <div className="form-group">
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-info"
                   disabled={isSubmitting}
                 >
                   Login

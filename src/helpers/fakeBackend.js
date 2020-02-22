@@ -8,15 +8,17 @@ export function configureFakeBackend() {
       password: "admin",
       firstName: "Admin",
       lastName: "User",
-      role: Role.Admin
+      role: Role.Administrator,
+      profileUrl: "https://picsum.photos/200"
     },
     {
       id: 2,
       username: "user",
       password: "user",
-      firstName: "Normal",
-      lastName: "User",
-      role: Role.User
+      firstName: "Aditi",
+      lastName: "Saini",
+      role: Role.Professor,
+      profileUrl: "https://picsum.photos/200"
     }
   ];
   let realFetch = window.fetch;
@@ -44,6 +46,7 @@ export function configureFakeBackend() {
             firstName: user.firstName,
             lastName: user.lastName,
             role: user.role,
+            profileUrl: user.profileUrl,
             token: `fake-jwt-token.${user.role}`
           });
         }
@@ -58,7 +61,7 @@ export function configureFakeBackend() {
 
           // only allow normal users access to their own record
           const currentUser = users.find(x => x.role === role);
-          if (id !== currentUser.id && role !== Role.Admin)
+          if (id !== currentUser.id && role !== Role.Administrator)
             return unauthorised();
 
           const user = users.find(x => x.id === id);
@@ -67,7 +70,7 @@ export function configureFakeBackend() {
 
         // get all users - admin only
         if (url.endsWith("/users") && opts.method === "GET") {
-          if (role !== Role.Admin) return unauthorised();
+          if (role !== Role.Administrator) return unauthorised();
           return ok(users);
         }
 

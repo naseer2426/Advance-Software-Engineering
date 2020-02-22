@@ -14,7 +14,6 @@ function getAll() {
 }
 
 function getById(id) {
-  console.log(id);
   const requestOptions = { method: "GET", headers: authHeader() };
   return fetch(`http://localhost:3000/users/${id}`, requestOptions).then(
     handleResponse
