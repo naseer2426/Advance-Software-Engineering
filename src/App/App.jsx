@@ -7,14 +7,10 @@ import { authenticationService } from "../services/authenticationService";
 import PrivateRoute from "../components/privateRoute";
 import { Navbar, Nav } from "react-bootstrap";
 
-//Pages
-// import SignInPage from "../pages/signInPage";
 import Dashboard from "../components/dashboard";
 import HomePage from "../pages/homePage";
 import AdminPage from "../pages/adminPage";
 import LoginPage from "../pages/loginPage";
-
-// import NavBar from "../components/navbar";
 
 class App extends React.Component {
   constructor(props) {
