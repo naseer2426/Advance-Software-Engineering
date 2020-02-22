@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { authenticationService } from "../services/authenticationService";
-
 export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
   <Route
     {...rest}
@@ -15,7 +14,6 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
           />
         );
       }
-
       // check if route is restricted by role
       if (roles && roles.indexOf(currentUser.role) === -1) {
         // role not authorised so redirect to home page
@@ -29,3 +27,4 @@ export const PrivateRoute = ({ component: Component, roles, ...rest }) => (
 );
 
 export default PrivateRoute;
+
