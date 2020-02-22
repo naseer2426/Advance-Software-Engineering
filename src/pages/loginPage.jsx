@@ -16,12 +16,6 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="alert alert-info">
-          <strong>Normal User</strong> - U: user P: user
-          <br />
-          <strong>Administrator</strong> - U: admin P: admin
-        </div>
-        <h2>Login</h2>
         <Formik
           initialValues={{
             username: "",
@@ -64,6 +58,13 @@ class LoginPage extends React.Component {
                   className="invalid-feedback"
                 />
               </div>
+              {/* <div className="form-group">
+                <label htmlFor="domain">Domain</label>
+                <Field as="select" name="color">
+                  <option value="Professor">Professor</option>
+                  <option value="Administrator">Administrator</option>
+                </Field>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <Field

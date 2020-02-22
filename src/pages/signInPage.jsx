@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { Row, Container } from "react-bootstrap";
-
 import SignInForm from "../components/signIn";
+import { authenticationService } from "../services/authenticationService";
+//Can remove
+class SignInPage extends React.Component {
+  constructor(props) {
+    super(props);
 
-class SignInPage extends Component {
+    // redirect to home if already logged in
+    if (authenticationService.currentUserValue) {
+      this.props.history.push("/");
+    }
+  }
+
   render() {
     return (
       <React.Fragment>

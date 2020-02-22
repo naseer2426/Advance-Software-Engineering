@@ -1,14 +1,15 @@
 import React from "react";
 import "../App.css";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import { history } from "../helpers/history";
 import { Role } from "../helpers/role";
 import { authenticationService } from "../services/authenticationService";
 import PrivateRoute from "../components/privateRoute";
+import { Navbar, Nav } from "react-bootstrap";
 
 //Pages
-// import Dashboard from "../components/dashboard";
 // import SignInPage from "../pages/signInPage";
+import Dashboard from "../components/dashboard";
 import HomePage from "../pages/homePage";
 import AdminPage from "../pages/adminPage";
 import LoginPage from "../pages/loginPage";
@@ -44,35 +45,47 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          {currentUser && (
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
-              <div className="navbar-nav">
-                <Link to="/" className="nav-item nav-link">
-                  Home
-                </Link>
-                {isAdmin && (
-                  <Link to="/admin" className="nav-item nav-link">
-                    Admin
-                  </Link>
-                )}
-                <button onClick={this.logout} className="nav-item nav-link">
-                  Logout
-                </button>
-              </div>
-            </nav>
-          )}
-          <div className="jumbotron">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6 offset-md-3">
-                  <PrivateRoute exact path="/" component={HomePage} />
-                  <PrivateRoute
-                    path="/admin"
-                    roles={[Role.Admin]}
-                    component={AdminPage}
-                  />
-                  <Route path="/signin" component={LoginPage} />
-                </div>
+          <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/signin">FRATS</Navbar.Brand>
+            <Nav className="ml-auto">
+              {currentUser && (
+                <>
+                  <Nav.Link href="/" className="nav-item nav-link mr-4">
+                    Home
+                  </Nav.Link>
+                  <Nav.Link
+                    href="/dashboard"
+                    className="nav-item nav-link mr-4"
+                  >
+                    Dashboard
+                  </Nav.Link>
+                  {isAdmin && (
+                    <Nav.Link href="/manage" className="nav-item nav-link mr-4">
+                      Manage
+                    </Nav.Link>
+                  )}
+                  <button
+                    onClick={this.logout}
+                    type="button"
+                    className="btn btn-info"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+            </Nav>
+          </Navbar>
+          <div className="container mt-5">
+            <div className="row">
+              <div className="col-md-6 offset-md-3">
+                <PrivateRoute exact path="/" component={HomePage} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  path="/manage"
+                  roles={[Role.Admin]}
+                  component={AdminPage}
+                />
+                <Route path="/signin" component={LoginPage} />
               </div>
             </div>
           </div>
@@ -83,24 +96,3 @@ class App extends React.Component {
 }
 
 export { App };
-
-// function App() {
-//   function loggedIn() {
-//     return false;
-//   }
-
-//   return (
-//     <React.Fragment>
-//       <NavBar />
-//       <Router>
-//         <Route path="/signin" component={SignInPage} />
-//         <PrivateRoute authed={loggedIn()} path="/home" component={Dashboard} />
-//         <PrivateRoute
-//           authed={loggedIn()}
-//           path="/dashboard"
-//           component={Dashboard}
-//         />
-//       </Router>
-//     </React.Fragment>
-//   );
-// }
