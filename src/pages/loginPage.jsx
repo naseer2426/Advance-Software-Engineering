@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
             );
           }}
           render={({ errors, status, touched, isSubmitting }) => (
-            <Form>
+            <Form className="mt-5">
               <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <Field
