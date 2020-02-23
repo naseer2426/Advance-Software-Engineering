@@ -9,7 +9,7 @@ export function configureFakeBackend() {
       firstName: "Admin",
       lastName: "User",
       role: Role.Administrator,
-      profileUrl: "https://picsum.photos/200",
+      profileUrl: "https://picsum.photos/id/1005/200",
       courses: [
         "IntelligentAgents",
         "ArtificialIntelligence",
@@ -21,10 +21,10 @@ export function configureFakeBackend() {
       id: 2,
       username: "user",
       password: "user",
-      firstName: "Aditi",
-      lastName: "Saini",
+      firstName: "Mary",
+      lastName: "Jhonson",
       role: Role.Professor,
-      profileUrl: "https://picsum.photos/200",
+      profileUrl: "https://picsum.photos/id/1027/200",
       courses: ["CyberSecurity", "ComputerVision"]
     }
   ];
