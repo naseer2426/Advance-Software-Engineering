@@ -1,9 +1,9 @@
-// import config from "config";
 import { authHeader, handleResponse } from "../helpers";
 
 export const userService = {
   getAll,
-  getById
+  getById,
+  getByCourse
 };
 
 function getAll() {
@@ -18,4 +18,12 @@ function getById(id) {
   return fetch(`http://localhost:3000/users/${id}`, requestOptions).then(
     handleResponse
   );
+}
+
+function getByCourse(id, name) {
+  const requestOptions = { method: "GET", headers: authHeader() };
+  return fetch(
+    `http://localhost:3000/?user=${id}&course=${name}`,
+    requestOptions
+  ).then(handleResponse);
 }

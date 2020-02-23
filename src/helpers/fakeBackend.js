@@ -9,7 +9,13 @@ export function configureFakeBackend() {
       firstName: "Admin",
       lastName: "User",
       role: Role.Administrator,
-      profileUrl: "https://picsum.photos/200"
+      profileUrl: "https://picsum.photos/200",
+      courses: [
+        "IntelligentAgents",
+        "ArtificialIntelligence",
+        "CyberSecurity",
+        "ComputerVision"
+      ]
     },
     {
       id: 2,
@@ -18,7 +24,8 @@ export function configureFakeBackend() {
       firstName: "Aditi",
       lastName: "Saini",
       role: Role.Professor,
-      profileUrl: "https://picsum.photos/200"
+      profileUrl: "https://picsum.photos/200",
+      courses: ["CyberSecurity", "ComputerVision"]
     }
   ];
   let realFetch = window.fetch;
@@ -47,6 +54,7 @@ export function configureFakeBackend() {
             lastName: user.lastName,
             role: user.role,
             profileUrl: user.profileUrl,
+            courses: user.courses,
             token: `fake-jwt-token.${user.role}`
           });
         }
@@ -74,11 +82,29 @@ export function configureFakeBackend() {
           return ok(users);
         }
 
+        // get course information from user id and course name
+        if (
+          url.match(/user=/) &&
+          url.match(/course=/) != null &&
+          opts.method === "GET"
+        ) {
+          //Gets course and id from the url
+          let urlQueryString = url.split("/")[3];
+          var urlParams = new URLSearchParams(urlQueryString);
+          var course = urlParams.get("course");
+          var id = urlParams.get("user");
+          //finds the current user based on id
+          var currentUser = users.find(x => x.id.toString() === id);
+          // check if the user is verified to access courses
+          if (currentUser.courses.includes(course)) {
+            return ok(require(`./coursesData/${course}.json`));
+          }
+        }
+
         // pass through any requests not handled above
         realFetch(url, opts).then(response => resolve(response));
 
         // private helper functions
-
         function ok(body) {
           resolve({
             ok: true,
