@@ -37,8 +37,8 @@ class AdminPage extends React.Component {
           {users && (
             <Container fluid>
               <Row>
-                {users.map(user => (
-                  <Col sm="6" className="mt-5">
+                {users.map((user, index) => (
+                  <Col sm="6" className="mt-5" key={index}>
                     <Card>
                       <Card.Img variant="top" src={user.profileUrl} />
                       <Card.Body>

@@ -13,8 +13,16 @@ class Dashboard extends Component {
     };
   }
 
+  handleClick = course => {
+    this.props.history.push({
+      pathname: "/courseInfo",
+      state: { course: course }
+    });
+  };
+
   componentDidMount() {
     const { currentUser } = this.state;
+
     //Gets all the courses registered by the current user depending on the role
     for (var i = 0; i < currentUser.courses.length; i++) {
       userService
@@ -29,12 +37,12 @@ class Dashboard extends Component {
 
   render() {
     const { coursesFromApi } = this.state;
-    console.log(coursesFromApi);
+    // console.log(coursesFromApi);
     return (
       <>
         <h1
           style={{
-            "font-family": "Lobster",
+            fontFamily: "Lobster",
             fontSize: "60px",
             textAlign: "center"
           }}
@@ -46,12 +54,17 @@ class Dashboard extends Component {
           <Container fluid>
             <Row>
               {coursesFromApi.map(course => (
-                <Col sm="6" className="mt-5">
+                <Col sm="6" className="mt-5" key={course.id}>
                   <Card>
                     <Card.Img variant="top" src={course.url} />
                     <Card.Body>
                       <Card.Title className="mb-4">{course.name}</Card.Title>
-                      <Button variant="info">Load Course</Button>
+                      <Button
+                        variant="info"
+                        onClick={() => this.handleClick(course)}
+                      >
+                        Load Course
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>

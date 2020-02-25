@@ -11,6 +11,8 @@ import Dashboard from "../pages/dashboard";
 import HomePage from "../pages/homePage";
 import AdminPage from "../pages/adminPage";
 import LoginPage from "../pages/loginPage";
+import CourseInfo from "../pages/courseInfo";
+import DateInfo from "../pages/dateInfo";
 
 class App extends React.Component {
   constructor(props) {
@@ -82,6 +84,8 @@ class App extends React.Component {
                   roles={[Role.Administrator]}
                   component={AdminPage}
                 />
+                <PrivateRoute exact path="/courseInfo" component={CourseInfo} />
+                <PrivateRoute exact path="/dateInfo" component={DateInfo} />
                 <Route path="/signin" component={LoginPage} />
               </div>
             </div>
