@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Image, Col, Container, Row, Card, Button } from "react-bootstrap";
+import "./courseInfoStyle.css";
+import { Role } from "../helpers";
 
 class CourseInfo extends Component {
   constructor(props) {
@@ -40,11 +42,12 @@ class CourseInfo extends Component {
             className="mt-5"
           />
         </Col>
-        <Col Container className="mt-5">
+        {/* {this.currentUser.role === Role.Administrator && ( */}
+        <div Container className="Container">
           <div class="card">
             <h2 class="card-header">Edit Course Details</h2>
             <div class="card-body">
-              <row class="card-text">
+              <div class="flex-column">
                 Lecture Theatre:
                 <dropdown>
                   <button
@@ -61,17 +64,57 @@ class CourseInfo extends Component {
                 <Button
                   variant="info"
                   size="sm"
-                  //onClick={() => this.handleClick(course)}
+                  //onClick={() => this.handleClick()}
                 >
                   Change
                 </Button>
-              </row>
-              <row class="card-text">Professor in Charge:</row>
-              <row class="card-text">Time Slot:</row>
-              <row class="card-text">Time Slot:</row>
+              </div>
+              <div class="flex-column">
+                Time Slot:
+                <dropdown>
+                  <button
+                    class="btn btn-outline-secondary btn-sm dropdown-toggle m-3"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    12:30pm - 1:30pm
+                  </button>
+                </dropdown>
+                <Button
+                  variant="info"
+                  size="sm"
+                  //onClick={() => this.handleClick()}
+                >
+                  Change
+                </Button>
+              </div>
+              <div class="flex-column">
+                <div class="form-group">
+                  <label for="formGroupExampleInput">
+                    Professor In Charge:
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="formGroupExampleInput"
+                    placeholder="New professor name"
+                  ></input>
+                  <Button
+                    variant="info"
+                    size="sm"
+                    //onClick={() => this.handleClick()}
+                  >
+                    Change
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
-        </Col>
+        </div>
+        {/* )} */}
         {courseDescription && (
           <Container fluid>
             <Row>
