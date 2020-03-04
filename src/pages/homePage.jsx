@@ -38,7 +38,7 @@ class HomePage extends React.Component {
                 />
               </Col>
             </Container>
-            <Jumbotron>
+            <Jumbotron classname="mt-5">
               <Container>
                 <h1 className="text-center">
                   Welcome{" "}

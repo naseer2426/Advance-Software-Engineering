@@ -23,9 +23,10 @@ class CourseInfo extends Component {
       <>
         <h1
           style={{
-            fontFamily: "Lobster",
+            fontFamily: "Lora",
             fontSize: "60px",
-            textAlign: "center"
+            textAlign: "center",
+            fontWeight: "bold"
           }}
           className="mt-5"
         >
@@ -38,6 +39,38 @@ class CourseInfo extends Component {
             alt="profile"
             className="mt-5"
           />
+        </Col>
+        <Col Container className="mt-5">
+          <div class="card">
+            <h2 class="card-header">Edit Course Details</h2>
+            <div class="card-body">
+              <row class="card-text">
+                Lecture Theatre:
+                <dropdown>
+                  <button
+                    class="btn btn-outline-secondary btn-sm dropdown-toggle m-3"
+                    type="button"
+                    id="dropdownMenu2"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    LT1
+                  </button>
+                </dropdown>
+                <Button
+                  variant="info"
+                  size="sm"
+                  //onClick={() => this.handleClick(course)}
+                >
+                  Change
+                </Button>
+              </row>
+              <row class="card-text">Professor in Charge:</row>
+              <row class="card-text">Time Slot:</row>
+              <row class="card-text">Time Slot:</row>
+            </div>
+          </div>
         </Col>
         {courseDescription && (
           <Container fluid>
@@ -58,6 +91,7 @@ class CourseInfo extends Component {
                       </Card.Text>
                       <Button
                         variant="info"
+                        size="sm"
                         onClick={() => this.handleClick(date[index])}
                       >
                         View

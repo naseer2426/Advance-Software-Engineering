@@ -42,9 +42,10 @@ class Dashboard extends Component {
       <>
         <h1
           style={{
-            fontFamily: "Lobster",
+            fontFamily: "Lora",
             fontSize: "60px",
-            textAlign: "center"
+            textAlign: "center",
+            fontWeight: "bold"
           }}
           className="mt-5"
         >
@@ -61,9 +62,13 @@ class Dashboard extends Component {
                       <Card.Title className="mb-4">{course.name}</Card.Title>
                       <Button
                         variant="info"
+                        size="sm"
                         onClick={() => this.handleClick(course)}
                       >
-                        Load Course
+                        Select
+                      </Button>
+                      <Button className="btn btn-danger btn-sm m-2">
+                        Delete
                       </Button>
                     </Card.Body>
                   </Card>
