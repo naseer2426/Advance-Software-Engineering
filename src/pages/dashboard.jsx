@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { authenticationService } from "../services/authenticationService";
 import { userService } from "../services/userService";
-import { Card, Button, Row, Col, Container } from "react-bootstrap";
+import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
+import { Role } from "../helpers";
+import { authenticationService } from "../services/authenticationService";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -35,6 +36,46 @@ class Dashboard extends Component {
     }
   }
 
+  isAdmin = () => {
+    if (this.state.currentUser.role == Role.Administrator) {
+      return (
+        <Card>
+          <Card.Header as="h4">Create Course</Card.Header>
+          <Card.Body>
+            <Container>
+              <Form>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label>Course Name:</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="E.g. Software Engineering"
+                  />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Add professors:</Form.Label>
+                  <Form.Control as="textarea" rows="3" />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Add students:</Form.Label>
+                  <Form.Control as="textarea" rows="3" />
+                </Form.Group>
+              </Form>
+              <Row>
+                <Button
+                  variant="info"
+                  size="sm"
+                  className="Button_Change ml-auto"
+                >
+                  Add
+                </Button>
+              </Row>
+            </Container>
+          </Card.Body>
+        </Card>
+      );
+    }
+  };
+
   render() {
     const { coursesFromApi } = this.state;
     // console.log(coursesFromApi);
@@ -51,6 +92,7 @@ class Dashboard extends Component {
         >
           Your Course Palette
         </h1>
+        {this.isAdmin()}
         {coursesFromApi && (
           <Container fluid>
             <Row>

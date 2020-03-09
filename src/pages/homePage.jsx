@@ -28,7 +28,7 @@ class HomePage extends React.Component {
           </Row>
         ) : (
           <>
-            <Container fluid md={12}>
+            <Container fluid md={12} style={{ "margin-bottom": "10px" }}>
               <Col md={{ span: 6, offset: 3 }}>
                 <Image
                   src={currentUser.profileUrl}
