@@ -24,29 +24,6 @@ class DateInfo extends Component {
         >
           Students Gallore
         </h1>
-        <Col Container className="Container">
-          <div class="card">
-            <h3 class="card-header">List of students</h3>
-            <div class="card-body">
-              <div class="flex-column">
-                {" "}
-                Name
-                <dropdown>
-                  <button
-                    class="btn btn-outline-secondary btn-sm dropdown-toggle m-3"
-                    type="button"
-                    id="dropdownMenu2"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Name
-                  </button>
-                </dropdown>
-              </div>
-            </div>
-          </div>
-        </Col>
         <div>
           {dateData && (
             <Row>
