@@ -1,0 +1,27 @@
+.picture {
+  margin-bottom: 30px;
+}
+.Button_Change {
+  margin-top: 10px;
+  size: "sm";
+  margin-right: 12.5px;
+}
+
+.cardSize {
+  width: 525px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.form-control {
+  max-width: 100%;
+}
+
+.form {
+  width: 500px;
+  margin-left: 5px;
+}

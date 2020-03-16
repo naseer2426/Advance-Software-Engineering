@@ -1,0 +1,10 @@
+.parent {
+    height: 100vh;
+    /* background-color: red; */
+}
+
+.vAlign {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
