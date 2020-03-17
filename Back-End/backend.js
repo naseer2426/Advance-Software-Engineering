@@ -1,7 +1,8 @@
 var express = require("express");
 const cors = require("cors")({ origin: true });
 const bodyParser = require("body-parser");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
+
 var app = express();
 const PORT = 8000;
 app.use(cors);
@@ -16,12 +17,14 @@ const client = new MongoClient(uri, {
 
 var users;
 var courses;
+var students;
 client.connect(err => {
     if (err != null) {
         console.log(err);
     }
     users = client.db("frats").collection("users");
     courses = client.db("frats").collection("courses");
+    students = client.db("frats").collection("students");
     console.log("Connected to mongo boi");
 });
 
@@ -34,10 +37,6 @@ app.get("/models/:url", (req, res) => {
 
 app.get("/faces/:url", (req, res) => {
     res.sendFile(__dirname + "/faces/" + req.params.url);
-});
-
-app.get("/:path", (req, res) => {
-    res.sendFile(__dirname + "/" + req.params.path);
 });
 
 app.post("/authenticate", (req, res) => {
@@ -61,6 +60,129 @@ app.post("/authenticate", (req, res) => {
         return res.send({ error: "Wrong Email or Password" });
     });
 });
+
+app.get("/courses", async (req, res) => {
+    var courseID = req.query.course;
+
+    courses.find({ _id: ObjectId(courseID) }).toArray((err, docs) => {
+        res.status(200);
+        res.send(docs[0]);
+    });
+});
+
+app.get("/professors", async (req, res) => {
+    users.find().toArray((err, docs) => {
+        var professors = [];
+
+        for (var i = 0; i < docs.length; i++) {
+            var currUser = docs[i];
+            if (currUser.role == "Professor") {
+                professors.push(currUser);
+            }
+        }
+
+        res.send(professors);
+    });
+});
+
+app.get("/start_attendance", async (req, res) => {
+    courses
+        .find({ _id: ObjectId("5e7005753d9cda4d3e1ff2bb") })
+        .toArray(async (err, docs) => {
+            var aiCourse = docs[0];
+            var dayDetails = {
+                "Total Students": 5,
+                "Total Present": 0,
+                "Total Absent": 5,
+                Students: { Present: [], Absent: [] }
+            };
+            dayDetails["id"] = new Date().toDateString();
+
+            aiCourse["dates"] = [{ 0: dayDetails }];
+            var response = await courses.updateOne(
+                { _id: ObjectId("5e7005753d9cda4d3e1ff2bb") },
+                { $set: aiCourse }
+            );
+            res.send(response);
+        });
+});
+
+app.get("/mark_attendance/:userid", async (req, res) => {
+    var userId = req.params.userid;
+    courses
+        .find({ _id: ObjectId("5e7005753d9cda4d3e1ff2bb") })
+        .toArray(async (err, docs) => {
+            var aiCourse = docs[0];
+            aiCourse["dates"][0]["0"]["Total Present"] += 1;
+            aiCourse["dates"][0]["0"]["Total Absent"] -= 1;
+            students.find({ name: userId }).toArray(async (err, docs) => {
+                var studentDetails = docs[0];
+                var studentMarked = false;
+
+                for (
+                    var i = 0;
+                    i < aiCourse["dates"][0]["0"]["Students"]["Present"].length;
+                    i++
+                ) {
+                    var currPresentStudent =
+                        aiCourse["dates"][0]["0"]["Students"]["Present"][i];
+                    if (currPresentStudent["name"] == userId) {
+                        studentMarked = true;
+                    }
+                }
+                if (!studentMarked) {
+                    aiCourse["dates"][0]["0"]["Students"]["Present"].push(
+                        studentDetails
+                    );
+                    var response = await courses.updateOne(
+                        { _id: ObjectId("5e7005753d9cda4d3e1ff2bb") },
+                        { $set: aiCourse }
+                    );
+                } else {
+                    response = { success: "Student already marked" };
+                }
+                res.send(response);
+            });
+        });
+});
+
+app.get("/end_attendance", async (req, res) => {
+    students.find().toArray((err, docs) => {
+        var allStudents = docs;
+        courses
+            .find({ _id: ObjectId("5e7005753d9cda4d3e1ff2bb") })
+            .toArray(async (err, docs_course) => {
+                var aiCourse = docs_course[0];
+                var presntStudents =
+                    aiCourse["dates"][0]["0"]["Students"]["Present"];
+                for (var i = 0; i < allStudents.length; i++) {
+                    var currStudent = allStudents[i];
+                    studentAbsent = true;
+                    for (var j = 0; j < presntStudents.length; j++) {
+                        var currPresentStudent = presntStudents[j];
+                        if (currPresentStudent["name"] == currStudent["name"]) {
+                            studentAbsent = false;
+                            break;
+                        }
+                    }
+                    if (studentAbsent) {
+                        aiCourse["dates"][0]["0"]["Students"]["Absent"].push(
+                            currStudent
+                        );
+                    }
+                }
+                var response = await courses.updateOne(
+                    { _id: ObjectId("5e7005753d9cda4d3e1ff2bb") },
+                    { $set: aiCourse }
+                );
+                res.send(response);
+            });
+    });
+});
+
+// app.get("/:path", (req, res) => {
+//     res.sendFile(__dirname + "/" + req.params.path);
+// });
 // app.get("/face-api.js", (req, res) => {
 //     res.sendFile(__dirname + "/face-api.js");
 // });

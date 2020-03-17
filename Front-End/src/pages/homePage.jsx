@@ -27,8 +27,7 @@ class HomePage extends React.Component {
             scanTime: 3,
             currScan: {
                 naseer: 0,
-                gujju: 0,
-                abhinav: 0,
+                mannan: 0,
                 aditi: 0,
                 jannat: 0,
                 puneet: 0,
@@ -36,12 +35,14 @@ class HomePage extends React.Component {
             },
             currFace: null,
             faceLabel: null,
-            currTop: 0
+            currTop: 0,
+            url: "http://localhost:8000"
         };
     }
 
     enableWebcam = () => {
         this.setState({ webcamEnabled: true });
+        fetch(this.state.url + "/start_attendance");
         if (!this.initializedModel) {
             this.setUpFecRec();
             this.initializedModel = true;
@@ -54,6 +55,7 @@ class HomePage extends React.Component {
     cancel = () => {
         var scanner = this.state.scanner;
         clearInterval(scanner);
+        fetch(this.state.url + "/end_attendance");
         this.setState({ webcamEnabled: false });
     };
 
@@ -156,23 +158,28 @@ class HomePage extends React.Component {
                                 this.setState((prevState, props) => {
                                     var currFace = prevState.currFace;
                                     if (currFace == result["_label"]) {
+                                        fetch(
+                                            this.state.url +
+                                                "/mark_attendance/" +
+                                                currFace
+                                        );
                                         return { faceLabel: currFace };
                                     } else {
                                         var resetScan = {
                                             naseer: 0,
-                                            gujju: 0,
-                                            abhinav: 0,
+
+                                            mannan: 0,
                                             aditi: 0,
                                             jannat: 0,
                                             puneet: 0,
                                             unknown: 0
                                         };
-                                        this.setState({
+                                        return {
                                             scannedPercent: 0,
                                             faceLabel: null,
                                             currTop: 0,
                                             currScan: resetScan
-                                        });
+                                        };
                                     }
                                 });
                             }

@@ -15,12 +15,16 @@ async function initialize() {
     await faceapi.loadFaceLandmarkModel("http://localhost:8000/models");
     await faceapi.loadFaceRecognitionModel("http://localhost:8000/models");
 
-    const labels = ["naseer", "abhinav", "gujju", "aditi", "jannat", "puneet"];
+    const labels = ["naseer", "aditi", "jannat", "puneet"];
 
     const labeledFaceDescriptors = await Promise.all(
         labels.map(async label => {
             // fetch image data from urls and convert blob to HTMLImage element
             const imgUrl = `http://localhost:8000/faces/${label}.jpg`;
+
+            // if (label == "mannan") {
+            //     const imgUrl = `http://localhost:8000/faces/${label}.jpeg`;
+            // }
             const img = await faceapi.fetchImage(imgUrl);
 
             // detect the face with the highest score in the image and compute it's landmarks and face descriptor
