@@ -45,7 +45,7 @@ class LoginPage extends React.Component {
             <>
               <Row className="justify-content-center">
                 <Image
-                  src={require("../assets/logo.png")}
+                  src={require("../assets/logo_new.png")}
                   rounded
                   alt="logo"
                   width={300}
