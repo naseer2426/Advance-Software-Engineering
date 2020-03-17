@@ -154,34 +154,53 @@ class HomePage extends React.Component {
                                     return { currTop, currFace, currScan };
                                 });
                             } else {
-                                this.desicionUI("#7CFC00");
-                                this.setState((prevState, props) => {
-                                    var currFace = prevState.currFace;
-                                    if (currFace == result["_label"]) {
-                                        fetch(
-                                            this.state.url +
-                                                "/mark_attendance/" +
-                                                currFace
-                                        );
-                                        return { faceLabel: currFace };
-                                    } else {
-                                        var resetScan = {
-                                            naseer: 0,
+                                if (this.state.currFace == "unknown") {
+                                    this.desicionUI("#FF0000");
+                                    var resetScan = {
+                                        naseer: 0,
 
-                                            mannan: 0,
-                                            aditi: 0,
-                                            jannat: 0,
-                                            puneet: 0,
-                                            unknown: 0
-                                        };
-                                        return {
-                                            scannedPercent: 0,
-                                            faceLabel: null,
-                                            currTop: 0,
-                                            currScan: resetScan
-                                        };
-                                    }
-                                });
+                                        mannan: 0,
+                                        aditi: 0,
+                                        jannat: 0,
+                                        puneet: 0,
+                                        unknown: 0
+                                    };
+                                    this.setState({
+                                        scannedPercent: 0,
+                                        faceLabel: null,
+                                        currTop: 0,
+                                        currScan: resetScan
+                                    });
+                                } else {
+                                    this.setState((prevState, props) => {
+                                        this.desicionUI("#7CFC00");
+                                        var currFace = prevState.currFace;
+                                        if (currFace == result["_label"]) {
+                                            fetch(
+                                                this.state.url +
+                                                    "/mark_attendance/" +
+                                                    currFace
+                                            );
+                                            return { faceLabel: currFace };
+                                        } else {
+                                            var resetScan = {
+                                                naseer: 0,
+
+                                                mannan: 0,
+                                                aditi: 0,
+                                                jannat: 0,
+                                                puneet: 0,
+                                                unknown: 0
+                                            };
+                                            return {
+                                                scannedPercent: 0,
+                                                faceLabel: null,
+                                                currTop: 0,
+                                                currScan: resetScan
+                                            };
+                                        }
+                                    });
+                                }
                             }
                             // console.log(this.state.canvas);
                             const box = res.detection.box;
