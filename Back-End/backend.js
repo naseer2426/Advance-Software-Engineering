@@ -210,6 +210,21 @@ app.post("/make_course", async (req, res) => {
     res.send(response);
 });
 
+app.get("/change_prof/:courseId/:profId", async (req, res) => {
+    var courseId = req.params.courseId;
+    var profId = req.params.profId;
+    // console.log(courseId, profId);
+    users.find({ _id: ObjectId(profId) }).toArray(async (err, docs) => {
+        var prof = docs[0];
+        prof.courses.push(courseId);
+        var response = await users.updateOne(
+            { _id: ObjectId(profId) },
+            { $set: prof }
+        );
+        res.send(response);
+    });
+});
+
 // app.get("/:path", (req, res) => {
 //     res.sendFile(__dirname + "/" + req.params.path);
 // });

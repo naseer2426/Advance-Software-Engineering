@@ -201,7 +201,7 @@ class Dashboard extends Component {
                                             </Form.Label>
                                             {/* <Form.Control as="textarea" rows="3" /> */}
                                             <DropdownButton
-                                                id="profInCharch"
+                                                id="profInCharge"
                                                 title={this.state.currProf}
                                                 onSelect={this.handleProfChange}
                                                 variant="info"
