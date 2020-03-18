@@ -58,10 +58,9 @@ class DateInfo extends Component {
 
               <h1
                 style={{
-                  fontFamily: "Lora",
+                  fontFamily: "Lobster",
                   fontSize: "30px",
-                  textAlign: "center",
-                  fontWeight: "bold"
+                  textAlign: "center"
                 }}
                 className="mt-5"
               >

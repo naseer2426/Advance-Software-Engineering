@@ -22,10 +22,9 @@ class AdminPage extends React.Component {
       <div>
         <h1
           style={{
-            fontFamily: "Lora",
+            fontFamily: "Lobster",
             fontSize: "60px",
-            textAlign: "center",
-            fontWeight: "bold"
+            textAlign: "center"
           }}
           className="mt-5"
         >

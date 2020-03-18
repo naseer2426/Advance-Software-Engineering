@@ -424,10 +424,9 @@ class CourseInfo extends Component {
             <>
                 <h1
                     style={{
-                        fontFamily: "Lora",
+                        fontFamily: "Lobster",
                         fontSize: "60px",
                         textAlign: "center",
-                        fontWeight: "bold"
                     }}
                     className="mt-5"
                 >
