@@ -61,6 +61,12 @@ app.post("/authenticate", (req, res) => {
     });
 });
 
+app.get("/users", (req, res) => {
+    users.find().toArray((err, docs) => {
+        res.send(docs);
+    });
+});
+
 app.get("/courses", async (req, res) => {
     var courseID = req.query.course;
 

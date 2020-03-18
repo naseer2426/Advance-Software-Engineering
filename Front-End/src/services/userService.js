@@ -8,7 +8,7 @@ export const userService = {
 
 function getAll() {
     const requestOptions = { method: "GET", headers: authHeader() };
-    return fetch(`http://localhost:3000/users`, requestOptions).then(
+    return fetch(`http://localhost:8000/users`, requestOptions).then(
         handleResponse
     );
 }
