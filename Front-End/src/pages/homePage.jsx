@@ -31,7 +31,8 @@ class HomePage extends React.Component {
                 aditi: 0,
                 jannat: 0,
                 puneet: 0,
-                unknown: 0
+                unknown: 0,
+                mannan: 0
             },
             currFace: null,
             faceLabel: null,
@@ -163,7 +164,8 @@ class HomePage extends React.Component {
                                         aditi: 0,
                                         jannat: 0,
                                         puneet: 0,
-                                        unknown: 0
+                                        unknown: 0,
+                                        mannan: 0
                                     };
                                     this.setState({
                                         scannedPercent: 0,
@@ -190,7 +192,8 @@ class HomePage extends React.Component {
                                                 aditi: 0,
                                                 jannat: 0,
                                                 puneet: 0,
-                                                unknown: 0
+                                                unknown: 0,
+                                                mannan: 0
                                             };
                                             return {
                                                 scannedPercent: 0,

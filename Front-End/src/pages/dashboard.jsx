@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { userService } from "../services/userService";
-import { Card, Button, Row, Col, Container, Form } from "react-bootstrap";
+import {
+    Card,
+    Button,
+    Row,
+    Col,
+    Container,
+    Form,
+    Dropdown,
+    DropdownButton
+} from "react-bootstrap";
 import { Role } from "../helpers";
 import { authenticationService } from "../services/authenticationService";
 
@@ -10,15 +19,42 @@ class Dashboard extends Component {
 
         this.state = {
             currentUser: authenticationService.currentUserValue,
-            coursesFromApi: []
+            coursesFromApi: [],
+            profs: [],
+            url: "http://localhost:8000",
+            students: [],
+            currProf: "Add Professors:",
+            profId: null,
+            currLecTim: "Add timings:",
+            studentsSelectedName: [],
+            studentsSelectedId: [],
+            studentString: "",
+            LT: "Lecture Theatre",
+            courseName: ""
         };
     }
+
+    makeCourse = () => {
+        var body = { name: this.state.courseName, profId: this.state.profId };
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        };
+        fetch(this.state.url + "/make_course", requestOptions);
+        alert("New Course " + this.state.courseName + " added");
+    };
 
     handleClick = course => {
         this.props.history.push({
             pathname: "/courseInfo",
             state: { course: course }
         });
+    };
+
+    handleLTSelect = eventKey => {
+        var LT = eventKey;
+        this.setState({ LT });
     };
 
     componentDidMount() {
@@ -37,8 +73,109 @@ class Dashboard extends Component {
                     }))
                 );
         }
-    }
 
+        fetch(this.state.url + "/professors")
+            .then(res => {
+                console.log("test");
+                return res.json();
+            })
+            .then(profs => {
+                console.log(profs);
+                var profList = [];
+
+                for (var i = 0; i < profs.length; i++) {
+                    var currProf = profs[i];
+                    profList.push(
+                        <Dropdown.Item
+                            eventKey={
+                                currProf._id +
+                                "~" +
+                                currProf.firstName +
+                                " " +
+                                currProf.lastName
+                            }
+                        >
+                            {currProf.firstName + " " + currProf.lastName}
+                        </Dropdown.Item>
+                    );
+                }
+
+                this.setState({ profs: profList });
+            });
+
+        fetch(this.state.url + "/students")
+            .then(res => {
+                return res.json();
+            })
+            .then(students => {
+                var studentInfo = [];
+
+                for (var i = 0; i < students.length; i++) {
+                    var currStudent = students[i];
+                    studentInfo.push(
+                        <Dropdown.Item
+                            eventKey={currStudent._id + "~" + currStudent.name}
+                        >
+                            {currStudent.name}
+                        </Dropdown.Item>
+                    );
+                }
+
+                this.setState({ students: studentInfo });
+            });
+    }
+    handleProfChange = eventKey => {
+        var profDeets = eventKey.split("~");
+        var currProf = profDeets[1];
+        var profId = profDeets[0];
+        this.setState({ currProf, profId });
+    };
+
+    handleStudentSelect = eventKey => {
+        var studentDeets = eventKey.split("~");
+        var studentId = studentDeets[0];
+        var studentName = studentDeets[1];
+
+        this.setState((prevState, props) => {
+            var studentString = prevState.studentString;
+            if (studentString == "") {
+                studentString += studentName;
+            } else {
+                studentString += "," + studentName;
+            }
+            return {
+                studentString
+            };
+        });
+
+        // this.getAddedStudents();
+
+        // console.log(this.state.studentsSelectedName);
+    };
+
+    // getAddedStudents = () => {
+    //     var studentsSelectedName = this.state.studentsSelectedName;
+
+    //     var studentString = "";
+
+    //     for (var i = 0; studentsSelectedName.length; i++) {
+    //         studentString += studentsSelectedName[i];
+    //         console.log(studentsSelectedName[i]);
+    //         if (i != studentsSelectedName.length - 1) {
+    //             studentString += ",";
+    //         }
+    //     }
+    //     this.setState({ studentString });
+    // };
+    handleTimeSelect = eventKey => {
+        var currLecTim = eventKey;
+        this.setState({ currLecTim });
+    };
+
+    handleNameChange = e => {
+        var courseName = e.target.value;
+        this.setState({ courseName });
+    };
     isAdmin = () => {
         if (this.state.currentUser.role == Role.Administrator) {
             return (
@@ -52,22 +189,131 @@ class Dashboard extends Component {
                                     <Form.Control
                                         type="text"
                                         placeholder="E.g. Software Engineering"
+                                        onChange={this.handleNameChange}
                                     />
                                 </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Add professors:</Form.Label>
-                                    <Form.Control as="textarea" rows="3" />
-                                </Form.Group>
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Add students:</Form.Label>
-                                    <Form.Control as="textarea" rows="3" />
-                                </Form.Group>
+
+                                <Row>
+                                    <Col>
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>
+                                                Add Professor
+                                            </Form.Label>
+                                            {/* <Form.Control as="textarea" rows="3" /> */}
+                                            <DropdownButton
+                                                id="profInCharch"
+                                                title={this.state.currProf}
+                                                onSelect={this.handleProfChange}
+                                                variant="info"
+                                            >
+                                                {this.state.profs}
+                                            </DropdownButton>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Label>Student List</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={this.state.studentString}
+                                        />
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col>
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>
+                                                Lecture timings
+                                            </Form.Label>
+                                            <DropdownButton
+                                                id="timings"
+                                                title={this.state.currLecTim}
+                                                onSelect={this.handleTimeSelect}
+                                                variant="info"
+                                            >
+                                                <Dropdown.Item eventKey="9:30-11:30">
+                                                    9:30-11:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="11:30-1:30">
+                                                    11:30-1:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="1:30-3:30">
+                                                    1:30-3:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="3:30-5:30">
+                                                    3:30-5:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="5:30-7:30">
+                                                    5:30-7:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="7:30-9:30">
+                                                    7:30-9:30
+                                                </Dropdown.Item>
+                                                <Dropdown.Item eventKey="9:30-11:30">
+                                                    9:30-11:30
+                                                </Dropdown.Item>
+                                            </DropdownButton>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>
+                                                Add students:
+                                            </Form.Label>
+                                            <DropdownButton
+                                                id="studentsAdded"
+                                                title="Add Student"
+                                                onSelect={
+                                                    this.handleStudentSelect
+                                                }
+                                                variant="info"
+                                            >
+                                                {this.state.students}
+                                            </DropdownButton>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
                             </Form>
                             <Row>
+                                <Col>
+                                    <Form.Label>Add LT:</Form.Label>
+                                    <DropdownButton
+                                        id="timings"
+                                        title={this.state.LT}
+                                        onSelect={this.handleLTSelect}
+                                        variant="info"
+                                    >
+                                        <Dropdown.Item eventKey="LT1">
+                                            LT1
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT2">
+                                            LT2
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT3">
+                                            LT3
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT4">
+                                            LT4
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT5">
+                                            LT5
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT6">
+                                            LT6
+                                        </Dropdown.Item>
+                                        <Dropdown.Item eventKey="LT7">
+                                            LT7
+                                        </Dropdown.Item>
+                                    </DropdownButton>
+                                </Col>
+                                <Col></Col>
+                            </Row>
+                            <Row>
                                 <Button
-                                    variant="info"
-                                    size="sm"
+                                    variant="warning"
+                                    size="md"
                                     className="Button_Change ml-auto"
+                                    onClick={this.makeCourse}
                                 >
                                     Add
                                 </Button>

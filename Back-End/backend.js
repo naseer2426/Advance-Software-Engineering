@@ -70,6 +70,12 @@ app.get("/courses", async (req, res) => {
     });
 });
 
+app.get("/students", async (req, res) => {
+    students.find().toArray((err, docs) => {
+        res.send(docs);
+    });
+});
+
 app.get("/professors", async (req, res) => {
     users.find().toArray((err, docs) => {
         var professors = [];
@@ -178,6 +184,30 @@ app.get("/end_attendance", async (req, res) => {
                 res.send(response);
             });
     });
+});
+
+app.post("/make_course", async (req, res) => {
+    var name = req.body.name;
+    var profId = req.body.profId;
+    var course = { name: name, url: "https://picsum.photos/200", dates: [] };
+    var response = await courses.insertOne(course);
+    // console.log(response);
+    users.find({ _id: ObjectId(profId) }).toArray(async (err, docs) => {
+        var prof = docs[0];
+        prof.courses.push(response.insertedId.toString());
+        await users.updateOne({ _id: ObjectId(profId) }, { $set: prof });
+    });
+    users
+        .find({ _id: ObjectId("5e6fd7d73d9cda4d3e1ff2b9") })
+        .toArray(async (err, docs) => {
+            var admin = docs[0];
+            admin.courses.push(response.insertedId.toString());
+            await users.updateOne(
+                { _id: ObjectId("5e6fd7d73d9cda4d3e1ff2b9") },
+                { $set: admin }
+            );
+        });
+    res.send(response);
 });
 
 // app.get("/:path", (req, res) => {
