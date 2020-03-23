@@ -175,7 +175,7 @@ class CourseInfo extends Component {
                         {/* Title: Change Course Details */}
                         <Col>
                             <Card className="cardSize">
-                                <Card.Header as="h4" className="Header">
+                                <Card.Header as="h4" className="Header" style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                     Change Course Details
                                 </Card.Header>
                                 <Card.Body>
@@ -187,7 +187,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlInput1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Professor in Charge:
                                                     </Form.Label>
                                                     <DropdownButton
@@ -209,7 +209,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlSelect1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Lecture Theatre:
                                                     </Form.Label>
                                                     <DropdownButton
@@ -250,7 +250,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlSelect1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Time Slot:
                                                     </Form.Label>
                                                     <DropdownButton
@@ -307,7 +307,7 @@ class CourseInfo extends Component {
                         {/* Title: Change Academic Details */}
                         <Col>
                             <Card className="cardSize">
-                                <Card.Header as="h4" className="Header">
+                                <Card.Header as="h4" className="Header" style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                     Change Academic Details
                                 </Card.Header>
                                 <Card.Body>
@@ -320,7 +320,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlInput1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Add Student:
                                                     </Form.Label>
                                                     <Form.Control
@@ -337,7 +337,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlInput1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Drop Student:
                                                     </Form.Label>
                                                     <Form.Control
@@ -356,7 +356,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlInput1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Add Student List
                                                     </Form.Label>
                                                     <DropdownButton
@@ -376,7 +376,7 @@ class CourseInfo extends Component {
                                                     as={Col}
                                                     controlId="exampleForm.ControlInput1"
                                                 >
-                                                    <Form.Label>
+                                                    <Form.Label style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                         Drop Student List:
                                                     </Form.Label>
                                                     <DropdownButton
@@ -432,13 +432,15 @@ class CourseInfo extends Component {
                 >
                     {courseDescription.name}
                 </h1>
-                <Col md={{ span: 6, offset: 3 }} className="picture">
-                    <Image
+                <Col  className="picture">
+                <center>
+                <Image 
                         src={courseDescription.url}
                         roundedCircle
                         alt="profile"
                         className="mt-5"
                     />
+                </center>
                 </Col>
                 {this.isAdmin()}
                 {courseDescription && (
@@ -448,10 +450,10 @@ class CourseInfo extends Component {
                                 <Col sm="6" className="mt-5" key={index}>
                                     <Card>
                                         <Card.Body>
-                                            <Card.Title className="mb-4">
-                                                {date[index]["id"]}
+                                            <Card.Title className="mb-4" style={{ fontFamily: "Montserrat", textAlign: "center" }}>
+                                                <b>{date[index]["id"]}</b>
                                             </Card.Title>
-                                            <Card.Text>
+                                            <Card.Text style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                                 Total Present:{" "}
                                                 {date[index]["Total Present"]}
                                                 <br />
