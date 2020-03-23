@@ -174,7 +174,7 @@ class Dashboard extends Component {
   isAdmin = () => {
     if (this.state.currentUser.role == Role.Administrator) {
       return (
-        <Card>
+        <Card style={{ marginTop: "50px" }}>
           <Card.Header
             as="h4"
             style={{
@@ -360,9 +360,9 @@ class Dashboard extends Component {
         >
           Your Course Palette
         </h1>
-        {this.isAdmin()}
+        <Container>{this.isAdmin()}</Container>
         {coursesFromApi && (
-          <Container fluid>
+          <Container fluid style={{ marginTop: "30px" }}>
             <Row>
               {coursesFromApi.map(course => (
                 <Col sm="6" className="mt-5" key={course.id}>
