@@ -43,7 +43,7 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark" sticky="top">
             <Navbar.Brand href="/signin">FRATS</Navbar.Brand>
             <Nav className="ml-auto">
               {currentUser && (
