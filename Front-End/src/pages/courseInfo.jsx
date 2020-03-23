@@ -174,7 +174,7 @@ class CourseInfo extends Component {
                     <Row>
                         {/* Title: Change Course Details */}
                         <Col>
-                            <Card className="cardSize">
+                            <Card className="cardSize" style={{marginTop: "40px"}}>
                                 <Card.Header as="h4" className="Header" style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                     Change Course Details
                                 </Card.Header>
@@ -306,7 +306,7 @@ class CourseInfo extends Component {
                         </Col>
                         {/* Title: Change Academic Details */}
                         <Col>
-                            <Card className="cardSize">
+                            <Card className="cardSize" style={{marginTop: "40px"}}>
                                 <Card.Header as="h4" className="Header" style={{ fontFamily: "Montserrat", textAlign: "center" }}>
                                     Change Academic Details
                                 </Card.Header>
