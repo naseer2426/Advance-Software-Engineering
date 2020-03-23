@@ -334,6 +334,7 @@ class Dashboard extends Component {
                   size="md"
                   className="Button_Change ml-auto"
                   onClick={this.makeCourse}
+                  style={{ width: "9rem" }}
                 >
                   Add
                 </Button>
