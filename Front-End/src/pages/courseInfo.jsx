@@ -426,7 +426,7 @@ class CourseInfo extends Component {
                     style={{
                         fontFamily: "Lobster",
                         fontSize: "60px",
-                        textAlign: "center",
+                        textAlign: "center"
                     }}
                     className="mt-5"
                 >

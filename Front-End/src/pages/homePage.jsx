@@ -32,7 +32,8 @@ class HomePage extends React.Component {
                 jannat: 0,
                 puneet: 0,
                 unknown: 0,
-                mannan: 0
+                mannan: 0,
+                kenneth: 0
             },
             currFace: null,
             faceLabel: null,
@@ -165,7 +166,8 @@ class HomePage extends React.Component {
                                         jannat: 0,
                                         puneet: 0,
                                         unknown: 0,
-                                        mannan: 0
+                                        mannan: 0,
+                                        kenneth: 0
                                     };
                                     this.setState({
                                         scannedPercent: 0,
@@ -193,7 +195,8 @@ class HomePage extends React.Component {
                                                 jannat: 0,
                                                 puneet: 0,
                                                 unknown: 0,
-                                                mannan: 0
+                                                mannan: 0,
+                                                kenneth: 0
                                             };
                                             return {
                                                 scannedPercent: 0,
@@ -311,9 +314,11 @@ class HomePage extends React.Component {
                                     <Button
                                         variant="outline-primary"
                                         onClick={this.cancel}
-                                        style={{ margin: "20px" }}
+                                        style={{
+                                            margin: "20px"
+                                        }}
                                     >
-                                        Cancel
+                                        End Session
                                     </Button>
                                 </Row>
                             </div>
@@ -322,7 +327,10 @@ class HomePage extends React.Component {
                 ) : (
                     <>
                         <Container fluid md={12}>
-                            <Col md={{ span: 6, offset: 3 }}>
+                            <Col
+                                md={{ span: 6, offset: 3 }}
+                                style={{ bottom: "20px" }}
+                            >
                                 <Image
                                     src={currentUser.profileUrl}
                                     roundedCircle
@@ -353,7 +361,7 @@ class HomePage extends React.Component {
                                     variant="warning"
                                     onClick={this.enableWebcam}
                                 >
-                                    Start my session
+                                    Start Session
                                 </Button>
                             </Row>
                         )}
