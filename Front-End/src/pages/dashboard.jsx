@@ -30,7 +30,8 @@ class Dashboard extends Component {
       studentsSelectedId: [],
       studentString: "",
       LT: "Lecture Theatre",
-      courseName: ""
+      courseName: "",
+      show: false
     };
   }
 
@@ -153,8 +154,27 @@ class Dashboard extends Component {
     var courseName = e.target.value;
     this.setState({ courseName });
   };
+
+  handleModalShow = e => {
+    console.log("Handle modal show triggered");
+    // this.setState({ show: true });
+    if (this.state.show) {
+      this.setState({ show: false });
+    } else {
+      this.setState({ show: true });
+    }
+  };
+
+  handleModalClose = e => {
+    this.setState({ show: false });
+  };
+
   isAdmin = () => {
-    if (this.state.currentUser.role == Role.Administrator) {
+    if (
+      this.state.currentUser.role == Role.Administrator &&
+      this.state.show == true
+    ) {
+      console.log("In admin");
       return (
         <Card style={{ marginTop: "50px" }}>
           <Card.Header
@@ -312,7 +332,7 @@ class Dashboard extends Component {
               </Row>
               <Row>
                 <Button
-                  variant="warning"
+                  variant="success"
                   size="md"
                   className="Button_Change ml-auto"
                   onClick={this.makeCourse}
@@ -343,7 +363,21 @@ class Dashboard extends Component {
         >
           Your Course Palette
         </h1>
-        <Container>{this.isAdmin()}</Container>
+        {this.state.currentUser.role == Role.Administrator && (
+          <Container>
+            <center>
+              <Button
+                variant="warning"
+                onClick={this.handleModalShow}
+                style={{ marginTop: "40px" }}
+              >
+                Create New Course
+              </Button>
+            </center>
+            {this.isAdmin()}
+          </Container>
+        )}
+
         {coursesFromApi && (
           <Container fluid style={{ marginTop: "30px" }}>
             <Row>

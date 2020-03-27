@@ -37,7 +37,7 @@ class AdminPage extends React.Component {
           {users && (
             <Container fluid>
               <Row className="justify-content-center">
-                <Button variant="success">Add User</Button>
+                <Button variant="warning">Add User</Button>
               </Row>
               <Row>
                 {users.map((user, index) => (

@@ -29,7 +29,8 @@ class CourseInfo extends Component {
             studentString: "",
             studentsSelectedName: [],
             studentsDroppedName: [],
-            studentDroppedString: ""
+            studentDroppedString: "", 
+            show: false
         };
         console.log(this.state.currentUser);
     }
@@ -163,8 +164,19 @@ class CourseInfo extends Component {
         });
     };
 
+    handleModalShow = e => {
+        console.log("Handle modal show triggered");
+        // this.setState({ show: true });
+        if (this.state.show) {
+          this.setState({ show: false });
+        } else {
+          this.setState({ show: true });
+        }
+      };
+
     isAdmin = () => {
-        if (this.state.currentUser.role == Role.Administrator) {
+        if (this.state.currentUser.role == Role.Administrator &&
+            this.state.show == true) {
             return (
                 <Container>
                     <Row>
@@ -289,7 +301,7 @@ class CourseInfo extends Component {
                                     </Row>
                                     <Row>
                                         <Button
-                                            variant="warning"
+                                            variant="success"
                                             size="sm"
                                             className="Button_Change ml-auto"
                                             onClick={this.changeProf}
@@ -392,7 +404,7 @@ class CourseInfo extends Component {
                                     </Row>
                                     <Row>
                                         <Button
-                                            variant="warning"
+                                            variant="success"
                                             size="sm"
                                             className="Button_Change ml-auto"
                                             onClick={() => {
@@ -437,7 +449,21 @@ class CourseInfo extends Component {
                     />
                 </center>
                 </Col>
-                {this.isAdmin()}
+                {this.state.currentUser.role==Role.Administrator && (
+                    <Container>
+                    <center>
+                      <Button
+                        variant="warning"
+                        onClick={this.handleModalShow}
+                        style={{ marginTop: "40px" }}
+                      >
+                        Edit Course Information
+                      </Button>
+                    </center>
+                    {this.isAdmin()}
+                  </Container>
+                )}
+                {/* {this.isAdmin()} */}
                 {courseDescription && (
                     <Container fluid>
                         <Row>
