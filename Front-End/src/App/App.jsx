@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Link } from "react-router-dom";
 import { history } from "../helpers/history";
 import { Role } from "../helpers/role";
 import { authenticationService } from "../services/authenticationService";
@@ -48,17 +48,22 @@ class App extends React.Component {
             <Nav className="ml-auto">
               {currentUser && (
                 <>
-                  <Nav.Link href="/" className="nav-item nav-link mr-3">
+                  <Nav.Link as={Link} to="/" className="nav-item nav-link mr-3">
                     Home
                   </Nav.Link>
                   <Nav.Link
-                    href="/dashboard"
+                    as={Link}
+                    to="/dashboard"
                     className="nav-item nav-link mr-3"
                   >
                     Dashboard
                   </Nav.Link>
                   {isAdmin && (
-                    <Nav.Link href="/manage" className="nav-item nav-link mr-3">
+                    <Nav.Link
+                      as={Link}
+                      to="/manage"
+                      className="nav-item nav-link mr-3"
+                    >
                       Manage
                     </Nav.Link>
                   )}
