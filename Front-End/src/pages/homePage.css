@@ -1,10 +1,9 @@
 .parent {
-    height: 100vh;
-    /* background-color: red; */
+  height: 100vh;
 }
 
 .vAlign {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }

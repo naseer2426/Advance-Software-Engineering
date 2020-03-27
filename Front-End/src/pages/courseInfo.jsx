@@ -161,10 +161,6 @@ class CourseInfo extends Component {
                 studentDroppedString
             };
         });
-
-        // this.getAddedStudents();
-
-        // console.log(this.state.studentsSelectedName);
     };
 
     isAdmin = () => {
@@ -419,7 +415,6 @@ class CourseInfo extends Component {
 
     render() {
         const { courseDescription } = this.state;
-        // console.log(courseDescription.dates);
         return (
             <>
                 <h1

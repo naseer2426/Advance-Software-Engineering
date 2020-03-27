@@ -50,7 +50,6 @@ class HomePage extends React.Component {
       this.initializedModel = true;
     }
     var scanner = this.startScan();
-    // var scanner = "test";
     this.setState({ scanner });
   };
 
@@ -92,11 +91,7 @@ class HomePage extends React.Component {
   };
 
   startScan = () => {
-    // console.log(input)
-
-    // this.setState({ canvas, input });
     var scanner = setInterval(() => {
-      // console.log("running");
       if (this.state.faceapi) {
         var input = document.getElementsByTagName("video")[0];
         var canvas = document.getElementById("overlay");
@@ -112,8 +107,6 @@ class HomePage extends React.Component {
           initializedCanvas: true
         });
 
-        // console.log(input);
-
         this.state.faceapi
           .detectSingleFace(this.state.input)
           .withFaceLandmarks()
@@ -123,17 +116,6 @@ class HomePage extends React.Component {
               const result = this.state.faceMatcher.findBestMatch(
                 res.descriptor
               );
-              // console.log("Recognized - ", result._label);
-              // console.log(result);
-              // const context = canvas.getContext("2d");
-              // context.clearRect(
-              //     10,
-              //     10,
-              //     canvas.width - 10,
-              //     canvas.height - 10
-              // );
-
-              // console.log(this.state.scannedPercent);
 
               if (this.state.scannedPercent < 100) {
                 this.setState((prevState, props) => {
@@ -203,7 +185,6 @@ class HomePage extends React.Component {
                   });
                 }
               }
-              // console.log(this.state.canvas);
               const box = res.detection.box;
               const drawBox = new this.state.faceapi.draw.DrawBox(box, {
                 label: this.state.faceLabel
@@ -246,24 +227,6 @@ class HomePage extends React.Component {
     }, 1000);
   };
 
-  // loader = () => {
-  //     this.setUpFecRec();
-  //     if (this.state.loading) {
-  //         return (
-  //             <Row className="justify-content-center">
-  //                 <Spinner animation="border" />
-  //             </Row>
-  //         );
-  //     } else {
-  //         return (
-  //             <Row className="justify-content-center">
-  //                 <Webcam />
-  //                 {this.setupVideoElement()}
-  //             </Row>
-  //         );
-  //     }
-  // };
-
   render() {
     const { currentUser } = this.state;
     return (
@@ -288,13 +251,7 @@ class HomePage extends React.Component {
                   right: "-6%"
                 }}
               ></canvas>
-
               <div className="parent">
-                {/* <Row
-                                style={{ top: "100px" }}
-                                className="justify-content-center"
-                            ></Row> */}
-
                 <Row className="justify-content-center vAlign">
                   <Webcam style={{ margin: "20px" }} />
                   <Container>
@@ -352,6 +309,18 @@ class HomePage extends React.Component {
                 }}
               >
                 Your role is: <strong>{currentUser.role}</strong>
+                <br />
+              </p>
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  textAlign: "center",
+                  fontSize: "16px"
+                }}
+              >
+                Matriculation Number:{" "}
+                <strong>{currentUser.matricNumber}</strong>
+                <br />
               </p>
             </Col>
             {currentUser.role === Role.Professor && (

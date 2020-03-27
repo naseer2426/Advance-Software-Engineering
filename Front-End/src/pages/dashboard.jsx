@@ -142,26 +142,8 @@ class Dashboard extends Component {
         studentString
       };
     });
-
-    // this.getAddedStudents();
-
-    // console.log(this.state.studentsSelectedName);
   };
 
-  // getAddedStudents = () => {
-  //     var studentsSelectedName = this.state.studentsSelectedName;
-
-  //     var studentString = "";
-
-  //     for (var i = 0; studentsSelectedName.length; i++) {
-  //         studentString += studentsSelectedName[i];
-  //         console.log(studentsSelectedName[i]);
-  //         if (i != studentsSelectedName.length - 1) {
-  //             studentString += ",";
-  //         }
-  //     }
-  //     this.setState({ studentString });
-  // };
   handleTimeSelect = eventKey => {
     var currLecTim = eventKey;
     this.setState({ currLecTim });

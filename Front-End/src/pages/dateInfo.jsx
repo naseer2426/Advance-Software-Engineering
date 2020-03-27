@@ -45,9 +45,6 @@ class DateInfo extends Component {
                         <Card.Title className="mb-4">
                           {studentP.name}
                         </Card.Title>
-                        {/* <Card.Subtitle className="mb-2 text-muted">
-                          Present
-                        </Card.Subtitle> */}
                       </Card.Body>
                     </Card>
                   </Col>
@@ -73,9 +70,6 @@ class DateInfo extends Component {
                         <Card.Title className="mb-4">
                           {studentA.name}
                         </Card.Title>
-                        {/* <Card.Subtitle className="mb-2 text-muted">
-                          Absent
-                        </Card.Subtitle> */}
                       </Card.Body>
                     </Card>
                   </Col>
