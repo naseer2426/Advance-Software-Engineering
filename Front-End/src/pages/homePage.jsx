@@ -318,8 +318,7 @@ class HomePage extends React.Component {
                   fontSize: "16px"
                 }}
               >
-                Matriculation Number:{" "}
-                <strong>{currentUser.matricNumber}</strong>
+                Network Id: <strong>{currentUser.networkId}</strong>
                 <br />
               </p>
             </Col>
