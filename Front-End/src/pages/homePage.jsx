@@ -293,7 +293,7 @@ class HomePage extends React.Component {
                   style={{ fontFamily: "Montserrat", textAlign: "center" }}
                   className="text-center"
                 >
-                  Welcome <br />
+                  Welcome, <br />
                   <strong>
                     <i>{currentUser.firstName}</i>
                   </strong>
