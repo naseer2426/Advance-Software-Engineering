@@ -78,6 +78,8 @@ class CourseInfo extends Component {
                                 " " +
                                 currProf.lastName
                             }
+                            style={{ fontFamily: "Montserrat"}}
+                            
                         >
                             {currProf.firstName + " " + currProf.lastName}
                         </Dropdown.Item>
@@ -99,6 +101,7 @@ class CourseInfo extends Component {
                     studentInfo.push(
                         <Dropdown.Item
                             eventKey={currStudent._id + "~" + currStudent.name}
+                            style={{ fontFamily: "Montserrat"}}
                         >
                             {currStudent.name}
                         </Dropdown.Item>
@@ -208,6 +211,7 @@ class CourseInfo extends Component {
                                                                 .handleProfChange
                                                         }
                                                         variant="info"
+                                                        style={{fontFamily: "Montserrat"}}
                                                     >
                                                         {this.state.profs}
                                                     </DropdownButton>
@@ -226,6 +230,7 @@ class CourseInfo extends Component {
                                                         onSelect={
                                                             this.handleLTSelect
                                                         }
+                                                        style={{fontFamily: "Montserrat"}}
                                                         variant="info"
                                                     >
                                                         <Dropdown.Item eventKey="LT1">
@@ -272,6 +277,7 @@ class CourseInfo extends Component {
                                                                 .handleTimeSelect
                                                         }
                                                         variant="info"
+                                                        style={{ fontFamily: "Montserrat"}}
                                                     >
                                                         <Dropdown.Item eventKey="9:30-11:30">
                                                             9:30-11:30
@@ -305,6 +311,7 @@ class CourseInfo extends Component {
                                             size="sm"
                                             className="Button_Change ml-auto"
                                             onClick={this.changeProf}
+                                            style={{ fontFamily: "Montserrat"}}
                                         >
                                             Change
                                         </Button>
@@ -375,6 +382,7 @@ class CourseInfo extends Component {
                                                                 .handleStudentSelect
                                                         }
                                                         variant="info"
+                                                        style={{ fontFamily: "Montserrat"}}
                                                     >
                                                         {this.state.students}
                                                     </DropdownButton>
@@ -395,6 +403,7 @@ class CourseInfo extends Component {
                                                                 .handleStudentDelete
                                                         }
                                                         variant="info"
+                                                        style={{ fontFamily: "Montserrat"}}
                                                     >
                                                         {this.state.students}
                                                     </DropdownButton>
@@ -412,6 +421,7 @@ class CourseInfo extends Component {
                                                     "Changes made successfully!"
                                                 );
                                             }}
+                                            style={{ fontFamily: "Montserrat"}}
                                         >
                                             Change
                                         </Button>
@@ -455,7 +465,7 @@ class CourseInfo extends Component {
                       <Button
                         variant="warning"
                         onClick={this.handleModalShow}
-                        style={{ marginTop: "40px" }}
+                        style={{ marginTop: "40px", fontFamily: "Montserrat" }}
                       >
                         Edit Course Information
                       </Button>
@@ -492,6 +502,7 @@ class CourseInfo extends Component {
                                                         date[index]
                                                     )
                                                 }
+                                                style={{ fontFamily: "Montserrat" }}
                                             >
                                                 View
                                             </Button>

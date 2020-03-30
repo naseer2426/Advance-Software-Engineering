@@ -42,7 +42,12 @@ class DateInfo extends Component {
                     <Card>
                       <Card.Img variant="top" src={studentP.url} />
                       <Card.Body>
-                        <Card.Title className="mb-4">
+                        <Card.Title
+                          className="mb-4"
+                          style={{
+                            fontFamily: "Montserrat"
+                          }}
+                        >
                           {studentP.name}
                         </Card.Title>
                       </Card.Body>
@@ -67,7 +72,12 @@ class DateInfo extends Component {
                     <Card>
                       <Card.Img variant="top" src={studentA.url} />
                       <Card.Body>
-                        <Card.Title className="mb-4">
+                        <Card.Title
+                          className="mb-4"
+                          style={{
+                            fontFamily: "Montserrat"
+                          }}
+                        >
                           {studentA.name}
                         </Card.Title>
                       </Card.Body>

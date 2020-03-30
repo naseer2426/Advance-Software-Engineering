@@ -219,6 +219,7 @@ class Dashboard extends Component {
                         title={this.state.currProf}
                         onSelect={this.handleProfChange}
                         variant="info"
+                        style={{ fontFamily: "Montserrat" }}
                       >
                         {this.state.profs}
                       </DropdownButton>
@@ -256,6 +257,9 @@ class Dashboard extends Component {
                         title={this.state.currLecTim}
                         onSelect={this.handleTimeSelect}
                         variant="info"
+                        style={{
+                          fontFamily: "Montserrat"
+                        }}
                       >
                         <Dropdown.Item eventKey="9:30-11:30">
                           9:30-11:30
@@ -296,6 +300,9 @@ class Dashboard extends Component {
                         title="Add Student"
                         onSelect={this.handleStudentSelect}
                         variant="info"
+                        style={{
+                          fontFamily: "Montserrat"
+                        }}
                       >
                         {this.state.students}
                       </DropdownButton>
@@ -318,6 +325,9 @@ class Dashboard extends Component {
                     title={this.state.LT}
                     onSelect={this.handleLTSelect}
                     variant="info"
+                    style={{
+                      fontFamily: "Montserrat"
+                    }}
                   >
                     <Dropdown.Item eventKey="LT1">LT1</Dropdown.Item>
                     <Dropdown.Item eventKey="LT2">LT2</Dropdown.Item>
@@ -336,7 +346,7 @@ class Dashboard extends Component {
                   size="md"
                   className="Button_Change ml-auto"
                   onClick={this.makeCourse}
-                  style={{ width: "9rem" }}
+                  style={{ width: "9rem", fontFamily: "Montserrat" }}
                 >
                   Add
                 </Button>
@@ -369,7 +379,7 @@ class Dashboard extends Component {
               <Button
                 variant="warning"
                 onClick={this.handleModalShow}
-                style={{ marginTop: "40px" }}
+                style={{ marginTop: "40px", fontFamily: "Montserrat" }}
               >
                 Create New Course
               </Button>
@@ -399,10 +409,14 @@ class Dashboard extends Component {
                         variant="info"
                         size="sm"
                         onClick={() => this.handleClick(course)}
+                        style={{ fontFamily: "Montserrat" }}
                       >
                         Select
                       </Button>
-                      <Button className="btn btn-danger btn-sm m-2">
+                      <Button
+                        className="btn btn-danger btn-sm m-2"
+                        style={{ fontFamily: "Montserrat" }}
+                      >
                         Delete
                       </Button>
                     </Card.Body>

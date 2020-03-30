@@ -283,7 +283,7 @@ class HomePage extends React.Component {
                   src={currentUser.profileUrl}
                   roundedCircle
                   alt="profile"
-                  className="mt-5"
+                  style={{ marginBottom: "30px", marginTop: "70px" }}
                 />
               </Col>
             </Container>
