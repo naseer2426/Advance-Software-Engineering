@@ -30,7 +30,7 @@ class AdminPage extends React.Component {
         >
           Community Page
         </h1>
-        <p style={{ fontFamily: "Montserrat", textAlign: "center" }}>
+        <p style={{ fontFamily: "Helvetica", textAlign: "center" }}>
           -----This page can only be accessed by administrators-----
         </p>
         <MDBRow center>
@@ -39,7 +39,7 @@ class AdminPage extends React.Component {
               <Row className="justify-content-center">
                 <Button
                   variant="warning"
-                  style={{ fontFamily: "Montserrat", marginTop: "20px" }}
+                  style={{ fontFamily: "Helvetica", marginTop: "20px" }}
                 >
                   Add User
                 </Button>
@@ -53,7 +53,7 @@ class AdminPage extends React.Component {
                         <Card.Title
                           className="mb-4"
                           style={{
-                            fontFamily: "Montserrat",
+                            fontFamily: "Helvetica",
                             textAlign: "center"
                           }}
                         >
@@ -62,7 +62,7 @@ class AdminPage extends React.Component {
                         <Card.Subtitle
                           className="mb-2 text-muted"
                           style={{
-                            fontFamily: "Montserrat",
+                            fontFamily: "Helvetica",
                             textAlign: "center"
                           }}
                         >

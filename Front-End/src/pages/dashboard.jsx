@@ -180,7 +180,7 @@ class Dashboard extends Component {
           <Card.Header
             as="h4"
             style={{
-              fontFamily: "Montserrat",
+              fontFamily: "Helvetica",
               textAlign: "center"
             }}
           >
@@ -191,7 +191,7 @@ class Dashboard extends Component {
               <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label
-                    style={{ fontFamily: "Montserrat", textAlign: "center" }}
+                    style={{ fontFamily: "Helvetica", textAlign: "center" }}
                   >
                     Course Name:
                   </Form.Label>
@@ -207,7 +207,7 @@ class Dashboard extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Label
                         style={{
-                          fontFamily: "Montserrat",
+                          fontFamily: "Helvetica",
                           textAlign: "center"
                         }}
                       >
@@ -219,7 +219,7 @@ class Dashboard extends Component {
                         title={this.state.currProf}
                         onSelect={this.handleProfChange}
                         variant="info"
-                        style={{ fontFamily: "Montserrat" }}
+                        style={{ fontFamily: "Helvetica" }}
                       >
                         {this.state.profs}
                       </DropdownButton>
@@ -228,7 +228,7 @@ class Dashboard extends Component {
                   <Col>
                     <Form.Label
                       style={{
-                        fontFamily: "Montserrat",
+                        fontFamily: "Helvetica",
                         textAlign: "center"
                       }}
                     >
@@ -246,7 +246,7 @@ class Dashboard extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Label
                         style={{
-                          fontFamily: "Montserrat",
+                          fontFamily: "Helvetica",
                           textAlign: "center"
                         }}
                       >
@@ -258,7 +258,7 @@ class Dashboard extends Component {
                         onSelect={this.handleTimeSelect}
                         variant="info"
                         style={{
-                          fontFamily: "Montserrat"
+                          fontFamily: "Helvetica"
                         }}
                       >
                         <Dropdown.Item eventKey="9:30-11:30">
@@ -289,7 +289,7 @@ class Dashboard extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                       <Form.Label
                         style={{
-                          fontFamily: "Montserrat",
+                          fontFamily: "Helvetica",
                           textAlign: "center"
                         }}
                       >
@@ -301,7 +301,7 @@ class Dashboard extends Component {
                         onSelect={this.handleStudentSelect}
                         variant="info"
                         style={{
-                          fontFamily: "Montserrat"
+                          fontFamily: "Helvetica"
                         }}
                       >
                         {this.state.students}
@@ -314,7 +314,7 @@ class Dashboard extends Component {
                 <Col>
                   <Form.Label
                     style={{
-                      fontFamily: "Montserrat",
+                      fontFamily: "Helvetica",
                       textAlign: "center"
                     }}
                   >
@@ -326,7 +326,7 @@ class Dashboard extends Component {
                     onSelect={this.handleLTSelect}
                     variant="info"
                     style={{
-                      fontFamily: "Montserrat"
+                      fontFamily: "Helvetica"
                     }}
                   >
                     <Dropdown.Item eventKey="LT1">LT1</Dropdown.Item>
@@ -346,7 +346,7 @@ class Dashboard extends Component {
                   size="md"
                   className="Button_Change ml-auto"
                   onClick={this.makeCourse}
-                  style={{ width: "9rem", fontFamily: "Montserrat" }}
+                  style={{ width: "9rem", fontFamily: "Helvetica" }}
                 >
                   Add
                 </Button>
@@ -379,7 +379,7 @@ class Dashboard extends Component {
               <Button
                 variant="warning"
                 onClick={this.handleModalShow}
-                style={{ marginTop: "40px", fontFamily: "Montserrat" }}
+                style={{ marginTop: "40px", fontFamily: "Helvetica" }}
               >
                 Create New Course
               </Button>
@@ -399,7 +399,7 @@ class Dashboard extends Component {
                       <Card.Title
                         className="mb-4"
                         style={{
-                          fontFamily: "Montserrat",
+                          fontFamily: "Helvetica",
                           textAlign: "center"
                         }}
                       >
@@ -409,13 +409,13 @@ class Dashboard extends Component {
                         variant="info"
                         size="sm"
                         onClick={() => this.handleClick(course)}
-                        style={{ fontFamily: "Montserrat" }}
+                        style={{ fontFamily: "Helvetica" }}
                       >
                         Select
                       </Button>
                       <Button
                         className="btn btn-danger btn-sm m-2"
-                        style={{ fontFamily: "Montserrat" }}
+                        style={{ fontFamily: "Helvetica" }}
                       >
                         Delete
                       </Button>
