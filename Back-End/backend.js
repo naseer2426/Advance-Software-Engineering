@@ -68,7 +68,11 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/add_user", async (req, res) => {
-    var response = await users.insertOne(req.body);
+    var userInfo = req.body;
+    userInfo["role"] = "Professor";
+    userInfo["courses"] = [];
+    userInfo["profileUrl"] = "https://picsum.photos/id/1005/200";
+    var response = await users.insertOne(userInfo);
     res.send(response);
 });
 
@@ -102,15 +106,21 @@ app.get("/professors", async (req, res) => {
     });
 });
 
+app.delete("/course/:courseId", async (req, res) => {
+    var courseId = req.params.courseId;
+    var response = await courses.remove({ _id: ObjectId(courseId) });
+    res.send(response);
+});
+
 app.get("/start_attendance", async (req, res) => {
     courses
         .find({ _id: ObjectId("5e7005753d9cda4d3e1ff2bb") })
         .toArray(async (err, docs) => {
             var aiCourse = docs[0];
             var dayDetails = {
-                "Total Students": 5,
+                "Total Students": 6,
                 "Total Present": 0,
-                "Total Absent": 5,
+                "Total Absent": 6,
                 Students: { Present: [], Absent: [] }
             };
             dayDetails["id"] = new Date().toDateString();
