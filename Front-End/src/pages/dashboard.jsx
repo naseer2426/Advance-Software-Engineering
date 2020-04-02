@@ -463,29 +463,37 @@ class Dashboard extends Component {
                                             >
                                                 {course.name}
                                             </Card.Title>
-                                            <Button
-                                                variant="info"
-                                                size="sm"
-                                                onClick={() =>
-                                                    this.handleClick(course)
-                                                }
-                                                style={{
-                                                    fontFamily: "Montserrat"
-                                                }}
-                                            >
-                                                Select
-                                            </Button>
-                                            <Button
-                                                className="btn btn-danger btn-sm m-2"
-                                                style={{
-                                                    fontFamily: "Montserrat"
-                                                }}
-                                                onClick={() =>
-                                                    this.handleDelete(course)
-                                                }
-                                            >
-                                                Delete
-                                            </Button>
+                                            <center>
+                                                <Button
+                                                    variant="info"
+                                                    size="sm"
+                                                    onClick={() =>
+                                                        this.handleClick(course)
+                                                    }
+                                                    style={{
+                                                        fontFamily: "Montserrat"
+                                                    }}
+                                                >
+                                                    Select
+                                                </Button>
+                                                {this.state.currentUser.role ==
+                                                Role.Administrator ? (
+                                                    <Button
+                                                        className="btn btn-danger btn-sm m-2"
+                                                        style={{
+                                                            fontFamily:
+                                                                "Montserrat"
+                                                        }}
+                                                        onClick={() =>
+                                                            this.handleDelete(
+                                                                course
+                                                            )
+                                                        }
+                                                    >
+                                                        Delete
+                                                    </Button>
+                                                ) : null}
+                                            </center>
                                         </Card.Body>
                                     </Card>
                                 </Col>
