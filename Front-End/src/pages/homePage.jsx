@@ -329,14 +329,14 @@ class HomePage extends React.Component {
                             <Container>
                                 <h1
                                     style={{
-                                        fontFamily: "Montserrat",
+                                        fontFamily: "Helvetica",
                                         textAlign: "center"
                                     }}
                                     className="text-center"
                                 >
                                     Welcome, <br />
                                     <strong>
-                                        <i>{currentUser.firstName}</i>
+                                        {currentUser.firstName}
                                     </strong>
                                 </h1>
                             </Container>
@@ -344,7 +344,7 @@ class HomePage extends React.Component {
                         <Col>
                             <p
                                 style={{
-                                    fontFamily: "Montserrat",
+                                    fontFamily: "Helvetica",
                                     textAlign: "center",
                                     fontSize: "25px"
                                 }}
@@ -355,7 +355,7 @@ class HomePage extends React.Component {
                             </p>
                             <p
                                 style={{
-                                    fontFamily: "Montserrat",
+                                    fontFamily: "Helvetica",
                                     textAlign: "center",
                                     fontSize: "16px"
                                 }}

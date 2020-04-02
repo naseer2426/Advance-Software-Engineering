@@ -26,7 +26,7 @@ class DateInfo extends Component {
         <div>
           <h1
             style={{
-              fontFamily: "Montserrat",
+              fontFamily: "Helvetica",
               fontSize: "30px",
               textAlign: "center"
             }}
@@ -45,7 +45,7 @@ class DateInfo extends Component {
                         <Card.Title
                           className="mb-4"
                           style={{
-                            fontFamily: "Montserrat"
+                            fontFamily: "Helvetica"
                           }}
                         >
                           {studentP.name}
@@ -58,7 +58,7 @@ class DateInfo extends Component {
 
               <h1
                 style={{
-                  fontFamily: "Montserrat",
+                  fontFamily: "Helvetica",
                   fontSize: "30px",
                   textAlign: "center"
                 }}
@@ -75,7 +75,7 @@ class DateInfo extends Component {
                         <Card.Title
                           className="mb-4"
                           style={{
-                            fontFamily: "Montserrat"
+                            fontFamily: "Helvetica"
                           }}
                         >
                           {studentA.name}

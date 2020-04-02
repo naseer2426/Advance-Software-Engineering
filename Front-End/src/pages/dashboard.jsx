@@ -183,15 +183,38 @@ class Dashboard extends Component {
         this.setState({ courseName });
     };
 
-    handleModalShow = e => {
-        console.log("Handle modal show triggered");
-        // this.setState({ show: true });
-        if (this.state.show) {
-            this.setState({ show: false });
-        } else {
-            this.setState({ show: true });
-        }
-    };
+  isAdmin = () => {
+    if (
+      this.state.currentUser.role == Role.Administrator &&
+      this.state.show == true
+    ) {
+      console.log("In admin");
+      return (
+        <Card style={{ marginTop: "50px" }}>
+          <Card.Header
+            as="h4"
+            style={{
+              fontFamily: "Helvetica",
+              textAlign: "center"
+            }}
+          >
+            Create Course
+          </Card.Header>
+          <Card.Body>
+            <Container>
+              <Form>
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label
+                    style={{ fontFamily: "Helvetica", textAlign: "center" }}
+                  >
+                    Course Name:
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="E.g. Software Engineering"
+                    onChange={this.handleNameChange}
+                  />
+                </Form.Group>
 
     handleModalClose = e => {
         this.setState({ show: false });
@@ -208,9 +231,30 @@ class Dashboard extends Component {
                     <Card.Header
                         as="h4"
                         style={{
-                            fontFamily: "Montserrat",
-                            textAlign: "center"
+                          fontFamily: "Helvetica",
+                          textAlign: "center"
                         }}
+                      >
+                        Add Professor
+                      </Form.Label>
+                      {/* <Form.Control as="textarea" rows="3" /> */}
+                      <DropdownButton
+                        id="profInCharge"
+                        title={this.state.currProf}
+                        onSelect={this.handleProfChange}
+                        variant="info"
+                        style={{ fontFamily: "Helvetica" }}
+                      >
+                        {this.state.profs}
+                      </DropdownButton>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Label
+                      style={{
+                        fontFamily: "Helvetica",
+                        textAlign: "center"
+                      }}
                     >
                         Create Course
                     </Card.Header>
