@@ -11,7 +11,8 @@ export const authenticationService = {
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() {
         return currentUserSubject.value;
-    }
+    },
+    SHA256
 };
 
 function login(username, password) {
