@@ -15,7 +15,7 @@ async function initialize() {
     await faceapi.loadFaceLandmarkModel("http://localhost:8000/models");
     await faceapi.loadFaceRecognitionModel("http://localhost:8000/models");
 
-    const labels = ["naseer", "aditi", "jannat", "puneet", "mannan", "kenneth"];
+    const labels = ["Naseer", "Aditi", "Jannat", "Puneet", "Mannan", "Kenneth"];
 
     const labeledFaceDescriptors = await Promise.all(
         labels.map(async label => {

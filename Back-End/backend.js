@@ -67,6 +67,11 @@ app.get("/users", (req, res) => {
     });
 });
 
+app.post("/add_user", async (req, res) => {
+    var response = await users.insertOne(req.body);
+    res.send(response);
+});
+
 app.get("/courses", async (req, res) => {
     var courseID = req.query.course;
 
